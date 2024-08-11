@@ -18,14 +18,18 @@
         <input id="connect" type="button" value="Установить соединение" />
         <input id="disconnect" type="button" value="Разорвать соединение" />
     </div>
-    <div>
-        <span>Сообщение</span>
-        <input id="message" type="text" value="" />
-        <input id="send-msg" type="button" value="Отправить сообщение" />
-    </div>
-    <div>
+    
+    <div class="chat-container">
         <span>Информация</span>
         <div id="socket-info"></div>
+        <div class="input-wrapper">        
+          <input id="message" type="text" value="" />
+          <input id="send-msg" type="button" value="Отправить" />
+      </div>
+
+    <div>
+       
+    </div>
     </div>
 </body>
 </html>

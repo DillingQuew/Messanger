@@ -4,8 +4,10 @@ window.addEventListener('DOMContentLoaded', function () {
   const SOCKET_ADDRESS = "ws://192.168.0.17:7777";
 
   // показать сообщение в #socket-info
-  function showMessage(message) {
+  function showMessage(message, style = null) {
+
       var div = document.createElement('div');
+      div.className = style;
       div.appendChild(document.createTextNode(message));
       document.getElementById('socket-info').appendChild(div);
   }
@@ -26,7 +28,15 @@ window.addEventListener('DOMContentLoaded', function () {
        * четыре функции обратного вызова: одна при получении данных и три – при изменениях в состоянии соединения
        */
       socket.onmessage = function (event) { // при получении данных от сервера
-          showMessage(event.data);
+        let data = JSON.parse(event.data);
+        let message = data.name + ": " + data.data;
+        if (data.name == document.getElementById('name').value) {
+          style = "right-side";
+        } else {
+          style = "left-side";
+        }
+        console.log(data);
+          showMessage(message, style);
       }
       socket.onopen = function () { // при установке соединения с сервером
           showMessage('Соединение с сервером установлено');
@@ -52,12 +62,13 @@ window.addEventListener('DOMContentLoaded', function () {
       if (socket !== undefined && socket.readyState === 1) {
           var message = document.getElementById('message').value;
           let name = document.getElementById('name').value;
-          
+
           let data = {
             name: name,
             data: message
           }
           socket.send(JSON.stringify(data));
+          document.getElementById('message').value = '';
           // showMessage(message);
       } else {
           showMessage('Невозможно отправить сообщение, нет соединения');
