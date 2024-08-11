@@ -1,0 +1,16 @@
+{
+    "name": "denisbazdarev/geolocation-app",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src",
+            "App\\": "app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Denis",
+            "email": "daodawich@gmail.com"
+        }
+    ],
+    "require": {}
+}
