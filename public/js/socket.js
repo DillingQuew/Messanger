@@ -41,12 +41,9 @@ window.addEventListener('DOMContentLoaded', function () {
        */
       socket.onmessage = function (event) { // при получении данных от сервера
         let data = JSON.parse(event.data);
+        console.log(data);
         let message = data.name + ": " + data.data;
-        if (data.name == document.getElementById('name').value) {
-          style = "right-side";
-        } else {
           style = "left-side";
-        }
         console.log(data);
           showMessage(message, style);
       }

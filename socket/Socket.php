@@ -10,9 +10,9 @@ $server->handler = function($connect, $data) use ($server){
     $connections = $server->getConnects(); 
     $jsonData = json_decode($data);
     foreach ($connections as $name => $connected) {
-      var_dump($jsonData."\n",);
       if ($name == $jsonData->name) {
-        var_dump($connected);
+        $jsonData->name = $name;
+        $data = json_encode((array)$jsonData);
         if ($connected instanceof Socket) {
           WebSocketServer::response($connected, $data);
         }
