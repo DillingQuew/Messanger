@@ -1,7 +1,15 @@
 window.addEventListener('DOMContentLoaded', function () {
 
+  function deleteAllCookies() {
+    document.cookie.split(';').forEach(cookie => {
+        const eqPos = cookie.indexOf('=');
+        const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    });
+}
+
   var socket;
-  const SOCKET_ADDRESS = "ws://192.168.0.17:7777";
+  const SOCKET_ADDRESS = "ws://192.168.0.17:7777/?name=Denis";
 
   // показать сообщение в #socket-info
   function showMessage(message, style = null) {
@@ -19,10 +27,14 @@ window.addEventListener('DOMContentLoaded', function () {
       // новое соединение открываем, если старое соединение закрыто
       if (socket === undefined || socket.readyState !== 1) {
           // socket = new WebSocket(document.getElementById('server').value);
+          deleteAllCookies();
+          document.cookie = "name=Denis";
           socket = new WebSocket(SOCKET_ADDRESS);
       } else {
           showMessage('Надо закрыть уже имеющееся соединение');
       }
+
+      console.log(socket);
 
       /*
        * четыре функции обратного вызова: одна при получении данных и три – при изменениях в состоянии соединения

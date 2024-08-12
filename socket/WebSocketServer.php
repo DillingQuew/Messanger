@@ -152,6 +152,7 @@ class WebSocketServer {
             $this->debug('Error socket_listen(): ' . socket_strerror(socket_last_error()));
             return;
         }
+ 
         $this->debug('Server is running...');
 
         $this->connects = array($this->connection);
@@ -179,7 +180,7 @@ class WebSocketServer {
             if (in_array($this->connection, $read)) {
                 // принимаем новое соединение и производим рукопожатие
                 if (($connect = socket_accept($this->connection)) && $this->handshake($connect)) {
-                    $this->debug('New connection accepted');
+                    $this->debug('New connection accepted');      
                     $this->connects[] = $connect; // добавляем его в список необходимых для обработки
                 }
                 // удаляем слушающий сокет из массива для чтения
@@ -402,6 +403,7 @@ class WebSocketServer {
 
         $data = socket_read($connect, 1000);
         $lines = explode("\r\n", $data);
+        var_dump($lines);
         foreach ($lines as $i => $line) {
             if ($i) {
                 if (preg_match('/\A(\S+): (.*)\z/', $line, $matches)) {
