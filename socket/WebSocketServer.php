@@ -181,7 +181,7 @@ class WebSocketServer {
                 // принимаем новое соединение и производим рукопожатие
                 if (($connect = socket_accept($this->connection)) && $this->handshake($connect)) {
                     $this->debug('New connection accepted');      
-                    $this->connects[] = $connect; // добавляем его в список необходимых для обработки
+                    // $this->connects[] = $connect; // добавляем его в список необходимых для обработки
                 }
                 // удаляем слушающий сокет из массива для чтения
                 unset($read[ array_search($this->connection, $read) ]);
@@ -403,7 +403,10 @@ class WebSocketServer {
 
         $data = socket_read($connect, 1000);
         $lines = explode("\r\n", $data);
-        var_dump($lines);
+        if (preg_match("/name=[a-zA-Z]{1,}/", $lines[0], $match)) {
+          list($name) = $match;
+          $name = explode('=', $name)[1];
+        }
         foreach ($lines as $i => $line) {
             if ($i) {
                 if (preg_match('/\A(\S+): (.*)\z/', $line, $matches)) {
@@ -437,7 +440,12 @@ class WebSocketServer {
                    "Connection: Upgrade\r\n" .
                    "Sec-WebSocket-Accept:".$SecWebSocketAccept."\r\n\r\n";
         socket_write($connect, $upgrade);
-
+        if (!empty($name)) {
+          $this->connects[$name] = $connect; // добавляем его в список необходимых для обработки
+        } else {
+          $this->connects[] = $connect;
+        }
+        
         return true;
 
     }
