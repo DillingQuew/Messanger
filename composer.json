@@ -3,7 +3,8 @@
     "autoload": {
         "psr-4": {
             "Src\\": "src",
-            "App\\": "app"
+            "App\\": "app",
+            "Chat\\": "socket/chat"
         }
     },
     "authors": [

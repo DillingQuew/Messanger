@@ -16,6 +16,21 @@ class ChatHandler {
     }
   }
 
+  public static function getChatHistory($filename = null) {
+    if (file_exists($filename)) {
+      $handle = fopen($filename, "r");
+      $history = [];
+      if ($handle) {
+          while (($line = fgets($handle)) !== false) {
+              $history[] = $line;
+          }
+          fclose($handle);
+      }
+      return $history;
+    } 
+    return false;
+  }
+
   private static function createFile($filename) {
     $file = fopen($filename, "w");
     fwrite($file, '');

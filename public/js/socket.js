@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function () {
       socket.onmessage = function (event) { // при получении данных от сервера
         let data = JSON.parse(event.data);
         console.log(data);
-        let message = data.name + ": " + data.data;
+        let message = data.from + ": " + data.message;
           style = "left-side";
         console.log(data);
           showMessage(message, style);
@@ -70,11 +70,14 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('send-msg').onclick = function () {
       if (socket !== undefined && socket.readyState === 1) {
           var message = document.getElementById('message').value;
-          let to = document.getElementById('to').value;
+          let to = document.getElementById('to').value,
+              from = document.getElementById('from').value;
 
           let data = {
-            name: to,
-            data: message
+            from: from,
+            to: to,
+            message: message,
+            date: Date.now()
           }
           socket.send(JSON.stringify(data));
           document.getElementById('message').value = '';

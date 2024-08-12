@@ -11,6 +11,10 @@ class ComposerStaticInit2f85ab84b65a2e413d711ada25623ac1
         array (
             'Src\\' => 4,
         ),
+        'C' => 
+        array (
+            'Chat\\' => 5,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -21,6 +25,10 @@ class ComposerStaticInit2f85ab84b65a2e413d711ada25623ac1
         'Src\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Chat\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/socket/chat',
         ),
         'App\\' => 
         array (

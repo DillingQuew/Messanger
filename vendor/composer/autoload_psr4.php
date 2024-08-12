@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Src\\' => array($baseDir . '/src'),
+    'Chat\\' => array($baseDir . '/socket/chat'),
     'App\\' => array($baseDir . '/app'),
 );
