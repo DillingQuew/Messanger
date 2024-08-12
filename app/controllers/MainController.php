@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use Src\Controller;
 use Chat\ChatHandler;
+
 class MainController extends Controller {
   public function index() {
     
