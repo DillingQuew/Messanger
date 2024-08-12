@@ -5,35 +5,17 @@ use Src\Helpers\RouteHelper;
 
 class Route {
   use RouteHelper;
-  public static function get(string $uri, $callback) {
-    if (self::ValidateRoute('GET', $uri)) {
-      if (is_callable($callback)) {
-        $callback();
-      } else {
-        self::ParseController($callback);
-      }
+  private static array $methods = ['get', 'post', 'put', 'delete'];
+
+  public static function __callStatic($name, $arguments) {
+    list($uri, $callback) = $arguments;
+    if (in_array($name, self::$methods)) {
+      self::delegateRequest($name, $uri, $callback);
     }
   }
-  public static function post(string $uri, $callback) {
-    if (self::ValidateRoute('POST', $uri)) {
-      if (is_callable($callback)) {
-        $callback();
-      } else {
-        self::ParseController($callback);
-      }
-    }
-  }
-  public static function put(string $uri, $callback) {
-    if (self::ValidateRoute('PUT', $uri)) {
-      if (is_callable($callback)) {
-        $callback();
-      } else {
-        self::ParseController($callback);
-      }
-    }
-  }
-  public static function delete(string $uri, $callback) {
-    if (self::ValidateRoute('DELETE', $uri)) {
+
+  private static function delegateRequest($method, $uri, $callback) {
+    if (self::ValidateRoute($method, $uri)) {
       if (is_callable($callback)) {
         $callback();
       } else {

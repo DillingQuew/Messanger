@@ -13,10 +13,9 @@ trait RouteHelper {
   }
 
   private static function ValidateRoute($method, $uri) {
-    if($method == $_SERVER['REQUEST_METHOD'] && $uri == $_SERVER['REQUEST_URI']) {
+    if($method == strtolower($_SERVER['REQUEST_METHOD']) && $uri == $_SERVER['REQUEST_URI']) {
       return true;
     }
     return false;
   }
-
 }
