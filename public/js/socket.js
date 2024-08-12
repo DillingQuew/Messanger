@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', function () {
 }
 
   var socket;
-  const SOCKET_ADDRESS = "ws://192.168.0.17:7777/?name=Denis";
+  let SOCKET_ADDRESS = "ws://192.168.0.10:7777/?name=";
 
   // показать сообщение в #socket-info
   function showMessage(message, style = null) {
@@ -23,12 +23,12 @@ window.addEventListener('DOMContentLoaded', function () {
   /*
    * Установить соединение с сервером и назначить обработчики событий
    */
-  // document.getElementById('connect').onclick = function () {
+  document.getElementById('accept-nickname').onclick = function () {
       // новое соединение открываем, если старое соединение закрыто
+      let nickname = document.getElementById('from').value;
       if (socket === undefined || socket.readyState !== 1) {
           // socket = new WebSocket(document.getElementById('server').value);
-          deleteAllCookies();
-          document.cookie = "name=Denis";
+          SOCKET_ADDRESS+=nickname;
           socket = new WebSocket(SOCKET_ADDRESS);
       } else {
           showMessage('Надо закрыть уже имеющееся соединение');
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', function () {
           }
           showMessage('Код: ' + event.code + ', причина: ' + event.reason);
       };
-  // };
+  };
 
   /*
    * Отправка сообщения серверу
@@ -73,15 +73,15 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('send-msg').onclick = function () {
       if (socket !== undefined && socket.readyState === 1) {
           var message = document.getElementById('message').value;
-          let name = document.getElementById('name').value;
+          let to = document.getElementById('to').value;
 
           let data = {
-            name: name,
+            name: to,
             data: message
           }
           socket.send(JSON.stringify(data));
           document.getElementById('message').value = '';
-          // showMessage(message);
+          showMessage(message, 'right-side');
       } else {
           showMessage('Невозможно отправить сообщение, нет соединения');
       }
@@ -90,12 +90,12 @@ window.addEventListener('DOMContentLoaded', function () {
   /*
    * Закрыть соединение с сервером
    */
-  document.getElementById('disconnect').onclick = function () {
-      if (socket !== undefined && socket.readyState === 1) {
-          socket.close();
-      } else {
-          showMessage('Соединение с сервером уже было закрыто');
-      }
-  };
+  // document.getElementById('disconnect').onclick = function () {
+  //     if (socket !== undefined && socket.readyState === 1) {
+  //         socket.close();
+  //     } else {
+  //         showMessage('Соединение с сервером уже было закрыто');
+  //     }
+  // };
 
 });
