@@ -1,0 +1,21 @@
+.auth {
+  &__container {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    // margin-top: 50%;
+    // transform: translateY(-50%);
+    /* From https://css.glass */
+    background: rgba(85, 116, 153, 0.28);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(85, 116, 153, 0.3);
+    padding: 20px;
+  }
+  &__header {
+    text-transform: uppercase;
+    text-align: center;
+  }
+}

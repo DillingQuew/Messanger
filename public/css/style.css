@@ -1,49 +1,120 @@
-body, body * {
-  background-color: black;
-  color: white;
+/* Reset and base styles  */
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
 }
-body > div {
-  margin-bottom: 15px;
-  overflow: hidden;
-}
-span {
-  display: block;
-  margin-bottom: 2px;
-}
-input {
-  padding: 5px;
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
-input[type="text"] {
+
+/* Links */
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Common */
+aside, nav, footer, header, section, main {
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul, ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+input, textarea, button, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button, input[type="submit"] {
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+body {
+  background-image: url("/public/img/background.jpg");
+  background-repeat: repeat;
+  background-size: 45%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 0.714);
+}
+
+.container {
+  max-width: 1600px;
   width: 100%;
-}
-input[type="button"] {
-  width: 25%;
-  float: left;
-  margin-top: 5px;
-  margin-right: 5px;
-}
-div#socket-info {
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-bottom: none;
+  margin: 0 auto;
+  margin-top: 100px;
 }
 
+.auth__container {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  /* From https://css.glass */
+  background: rgba(85, 116, 153, 0.28);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(85, 116, 153, 0.3);
+  padding: 20px;
+}
 
-#socket-info {
-  height: 600px;
-}
-.chat-container {
-  width: 300px;
-  height: 700px;
-}
-.input-wrapper {
-  display: flex;
-}
-
-.left-side {
-  text-align: left;
-}
-.right-side {
-  text-align: right;
+.auth__header {
+  text-transform: uppercase;
+  text-align: center;
 }
