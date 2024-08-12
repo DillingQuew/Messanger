@@ -1,5 +1,5 @@
 <?php
-
+namespace WebSocket;
 /**
  * Класс WebSocket сервера
  */
