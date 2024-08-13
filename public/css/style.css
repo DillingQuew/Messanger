@@ -100,6 +100,19 @@ body {
   margin-top: 100px;
 }
 
+.glass-container {
+  width: 100%;
+  margin: auto;
+  /* From https://css.glass */
+  background: rgba(85, 116, 153, 0.28);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(85, 116, 153, 0.3);
+  padding: 20px;
+}
+
 .auth__container {
   max-width: 500px;
   width: 100%;
@@ -117,4 +130,97 @@ body {
 .auth__header {
   text-transform: uppercase;
   text-align: center;
+}
+
+.chat__grid {
+  display: flex;
+}
+
+.chat__contacts {
+  width: 30%;
+  border-right: 1px solid gray;
+}
+
+.chat__window {
+  width: 70;
+}
+
+.chat__logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.chat__account {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.chat__item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  transition: all .2s ease-in;
+}
+
+.chat__item:hover {
+  background-color: rgba(102, 102, 165, 0.488);
+  transition: all .2s ease-out;
+  cursor: pointer;
+}
+
+.chat__message {
+  border-radius: 10px;
+  max-width: fit-content;
+  padding: 10px;
+  background-color: rgba(102, 102, 165, 0.488);
+}
+
+.chat__message--left {
+  align-self: end;
+}
+
+.chat__message--right {
+  align-self: start;
+}
+
+.chat__input-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.chat__input {
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(102, 102, 165, 0.488);
+}
+
+.chat__wrapper {
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.chat__window {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  overflow-y: scroll;
+  padding: 20px;
+}
+
+.chat__send-msg {
+  border-radius: 25px;
+  background-color: rgba(102, 102, 165, 0.488);
+  background-image: url("/public/img/send.svg");
+  background-size: 60%;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  width: 44px;
+  height: 44px;
 }

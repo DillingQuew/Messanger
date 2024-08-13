@@ -1,0 +1,85 @@
+.chat {
+  // height: 500px;
+  &__grid {
+    display: flex;
+  }
+  &__contacts {
+    width: 30%;
+    border-right: 1px solid gray;
+  }
+  &__window {
+    width: 70;
+  }
+  &__logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+  }
+  &__account {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  &__item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    transition: all .2s ease-in;
+
+    &:hover {
+      background-color: rgba(102, 102, 165, 0.488);
+      // border-radius: 10px;
+      // outline: 1px solid gray;
+      transition: all .2s ease-out;
+      cursor: pointer;
+    }
+  }
+  &__message {
+    border-radius: 10px;
+    max-width: fit-content;
+    padding: 10px;
+    background-color: rgba(102, 102, 165, 0.488);
+    &--left {
+      align-self: end;
+    }
+    &--right {
+      align-self: start;
+    }
+  }
+  &__input-wrapper {
+    width: 100%;
+    // background-color: black;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  &__input {
+    border-radius: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(102, 102, 165, 0.488);
+  }
+  &__wrapper {
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+  }
+  &__window {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    overflow-y: scroll;
+    padding: 20px;
+  }
+  &__send-msg { 
+    border-radius: 25px;
+    background-color: rgba(102, 102, 165, 0.488);
+    background-image: url('/public/img/send.svg');
+    background-size: 60%;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 44px;
+  }
+}

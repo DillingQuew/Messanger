@@ -1,27 +1,39 @@
 $(document).ready(function(){
-  $('#accept-nickname').on('click', function() {
-    let name = $('#from').val();
-    if (name != '') {
-      getChatHistory(name);
+  $('.chat__item').on('click', function() {
+    let member_to = $(this).data('name'),
+        member_from = $('#account-name').data('name');
+    let data = [{member: member_to}, {member: member_from}];
+    if (member_to != '') {
+      getChatHistory(data);
     }
   })
-  function getChatHistory(name = null) {
-    $.get('/chat/data', {}, function(data) {
-      data = JSON.parse(data);
-      data.forEach(function(data, index) {
-        let message = JSON.parse(data);
-        let cloudMessage = document.createElement('div');
+  function getChatHistory(json) {
+    console.log(json);
+    $.ajax({
+      url:'/chat/data',
+      dataType: "html",
+      method: "GET",
+      data: {data: json} ,
+      success: function(data) {
+        console.log(data);
+        // data = JSON.parse(data);
+        // data.forEach(function(data, index) {
+        //   let message = JSON.parse(data);
+        //   let cloudMessage = document.createElement('div');
 
-        if (message.from == name) {
-          cloudMessage.className = 'right-side';
-        } else {
-          cloudMessage.className = 'left-side';
-        }
-         console.log(message.from, message.to, name);
-        cloudMessage.innerText = message.from + " :" + message.message
-        $('#socket-info').append(cloudMessage)
-        
-      })
+        //   $(cloudMessage).addClass('chat__message');
+        //   if (message.from == name) {
+        //     $(cloudMessage).addClass('chat__message--right');
+        //   } else {
+        //     $(cloudMessage).addClass('chat__message--left');
+        //   }
+          
+        //   console.log(message.from == name);
+        //   cloudMessage.innerText = message.from + " :" + message.message
+        //   $('#chat_window').append(cloudMessage)
+          
+        // })
+      }
     });
   }
 })

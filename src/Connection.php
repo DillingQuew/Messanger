@@ -4,13 +4,13 @@ namespace Src;
 use PDO;
 class Connection {
    
-  protected static PDO $db;
-  public function __construct() {
-    if (!self::$db instanceof PDO) {
+  private static PDO $db;
+  public static function getInstance() {
+    if (empty(self::$db)) {
       $host = '127.0.0.1';
-      $db   = '';
+      $db   = 'chat';
       $user = 'root';
-      $pass = '';
+      $pass = 'root';
       $charset = 'utf8';
 
       $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -22,10 +22,10 @@ class Connection {
     
       self::$db = new PDO($dsn, $user, $pass, $opt);
     }
-    self::getInstance();
-  }
-
-  private static function getInstance() {
     return self::$db;
   }
+
+  public function __construct() {}
+  public function __clone() {}
+  public function __wakeup() {}
 }
